@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
 
     // Change the speed of the character
     public float moveSpeed = 15f;
-    public float rotationSpeed = 180f;
+    public float rotationSpeed = 200f; // Rotation Speed in degrees per second
     
     // is the player mounted to another actor, like the cheese is mounted on the cat?
     public bool isMounted = false; // Not used yet
@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     // it gives a performance increase if the variables are only changed instead of created new ones every frame
     private float moveHorizontal;
     private float moveVertical;
-    private float diagonalMovementModifier = 0.7f;
+    private readonly float diagonalMovementModifier = 0.7f; // Modifies the diagonal movement speed
 
     // Saved the objects rigid body
     private Rigidbody2D body;
@@ -62,14 +62,23 @@ public class PlayerMovement : MonoBehaviour
 
     void MovePlayer()
     {
-        if (moveHorizontal != 0 && moveVertical != 0) // Check for Vertical Movement
+        // Check for Vertical Movement
+        if (moveHorizontal != 0 && moveVertical != 0) 
         {
-            // move slower diagonal
+            // Modify diagonal movement speed
             moveHorizontal *= diagonalMovementModifier;
             moveVertical *= diagonalMovementModifier;
         }
-        // Move player accordingly
+        // Move player according to input direction
         body.velocity = new Vector2(moveHorizontal * moveSpeed, moveVertical * moveSpeed);
+
+        // rotate player towards movement direction
+        if (body.velocity != Vector2.zero)
+        {
+            float angle = Mathf.Atan2(body.velocity.y, body.velocity.x) * Mathf.Rad2Deg;
+            var q = Quaternion.AngleAxis(angle, Vector3.forward);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, q, rotationSpeed * Time.deltaTime);
+        }
     }
 
     void InitializePlayer()
