@@ -10,7 +10,8 @@ public class PlayerMovement : MonoBehaviour
     // What kind is the player? is it a cheese or a Mouse?
     public PlayerType playerType = PlayerType.Mouse;
 
-    // Defines what player it is.
+    // Defines which player it is.
+    // Maps the correct input to the gameObject
     public int playerNumber = 1;
 
     // Change the speed of the character
@@ -33,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D body;
 
 
-    // -------====== Functions ======-------
+    // -------====== Flow Functions ======-------
 
     // Start is called before the first frame update
     void Start()
@@ -54,15 +55,20 @@ public class PlayerMovement : MonoBehaviour
         MovePlayer();
     }
 
+
+    // -------====== Update Functions ======-------
+
+    // Simply gets the input values and updates the variables in realtime depending on the playerNumber
     void UpdateMoveAxis()
     {
         moveHorizontal = Input.GetAxis("P" + playerNumber + "_Horizontal");
         moveVertical = Input.GetAxis("P" + playerNumber + "_Vertical");
     }
 
+    // Moves and rotates the player depending on the input
     void MovePlayer()
     {
-        // Check for Vertical Movement
+        // Check for diagonal Movement
         if (moveHorizontal != 0 && moveVertical != 0) 
         {
             // Modify diagonal movement speed
@@ -81,13 +87,21 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+
+
+    // -------====== Constructor Functions ======-------
+
+    // Initial setup of the player and its variables
     void InitializePlayer()
     {
         body = GetComponent<Rigidbody2D>();
 
+        // Assigns the right textures as sprite depending on inspector settings of the player type
         AssignTextureSprite();
     }
 
+    // Assigns the right textures as sprite depending on inspector settings of the player type
+    // Could be changed when the playertype is defined by a Class instead
     void AssignTextureSprite()
     {
         if (playerType == PlayerType.Cheese)
@@ -100,6 +114,9 @@ public class PlayerMovement : MonoBehaviour
     }
 }
 
+
+// Defines the player type
+// Could be changed in something like a class that predifines stuff like movement speed, textures, functionality etc.
 public enum PlayerType
 {
     Cheese,
