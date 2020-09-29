@@ -14,26 +14,23 @@ public class PlayerMovement : MonoBehaviour
     public int playerNumber = 1;
 
     // Change the speed of the character
-    public float movementSpeed = 5f;
+    public float moveSpeed = 15f;
+    public float rotationSpeed = 180f;
     
     // is the player mounted to another actor, like the cheese is mounted on the cat?
-    public bool isMounted = false;
-
-
-
+    public bool isMounted = false; // Not used yet
 
 
     // -------====== Private Variables ======-------
 
-    private string input_Horizontal;
-    private string input_Vertical;
+    // Created the Variables here so they are accessible everywhere and only changed up update
+    // it gives a performance increase if the variables are only changed instead of created new ones every frame
+    private float moveHorizontal;
+    private float moveVertical;
+    private float diagonalMovementModifier = 0.7f;
 
-    private Sprite mouse;
-    private Sprite cheese;
-
-
-
-
+    // Saved the objects rigid body
+    private Rigidbody2D body;
 
 
     // -------====== Functions ======-------
@@ -41,35 +38,48 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        assignInputAccordingToPlayerNumber();
-        assignTextureAccordingToPlayerType();
+        InitializePlayer();
     }
 
     // Update is called once per frame
     void Update()
     {
-        movePlayer();
-        
-        
+        // Check every frame for key input and update the variables
+        UpdateMoveAxis();
     }
 
-    void movePlayer()
+    private void FixedUpdate()
     {
-        float moveHorizontal = Input.GetAxis(input_Horizontal);
-        float moveVertical = Input.GetAxis(input_Vertical);
-
-        Vector3 movement = new Vector3(moveHorizontal, moveVertical, 0f);
-
-        transform.Translate(movement * Time.deltaTime * movementSpeed);
+        // Move the rigidBody according to move... Variables
+        MovePlayer();
     }
 
-    void assignInputAccordingToPlayerNumber()
+    void UpdateMoveAxis()
     {
-        input_Horizontal = "P" + playerNumber + "_Horizontal";
-        input_Vertical = "P" + playerNumber + "_Vertical";
+        moveHorizontal = Input.GetAxis("P" + playerNumber + "_Horizontal");
+        moveVertical = Input.GetAxis("P" + playerNumber + "_Vertical");
     }
 
-    void assignTextureAccordingToPlayerType()
+    void MovePlayer()
+    {
+        if (moveHorizontal != 0 && moveVertical != 0) // Check for Vertical Movement
+        {
+            // move slower diagonal
+            moveHorizontal *= diagonalMovementModifier;
+            moveVertical *= diagonalMovementModifier;
+        }
+        // Move player accordingly
+        body.velocity = new Vector2(moveHorizontal * moveSpeed, moveVertical * moveSpeed);
+    }
+
+    void InitializePlayer()
+    {
+        body = GetComponent<Rigidbody2D>();
+
+        AssignTextureSprite();
+    }
+
+    void AssignTextureSprite()
     {
         if (playerType == PlayerType.Cheese)
         {
@@ -79,9 +89,6 @@ public class PlayerMovement : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("Actors/mouse", typeof(Sprite)) as Sprite;
         }
     }
-    
-    
-   
 }
 
 public enum PlayerType
