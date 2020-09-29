@@ -28,6 +28,10 @@ public class PlayerMovement : MonoBehaviour
     private string input_Horizontal;
     private string input_Vertical;
 
+    private Sprite mouse;
+    private Sprite cheese;
+
+
 
 
 
@@ -38,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         assignInputAccordingToPlayerNumber();
+        assignTextureAccordingToPlayerType();
     }
 
     // Update is called once per frame
@@ -62,6 +67,17 @@ public class PlayerMovement : MonoBehaviour
     {
         input_Horizontal = "P" + playerNumber + "_Horizontal";
         input_Vertical = "P" + playerNumber + "_Vertical";
+    }
+
+    void assignTextureAccordingToPlayerType()
+    {
+        if (playerType == PlayerType.Cheese)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("Actors/cheese", typeof(Sprite)) as Sprite;
+        } else
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("Actors/mouse", typeof(Sprite)) as Sprite;
+        }
     }
     
     
