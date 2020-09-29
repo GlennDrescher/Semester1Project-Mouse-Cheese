@@ -5,32 +5,71 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 
+    // -------====== Public Variables ======-------
+
+    // What kind is the player? is it a cheese or a Mouse?
+    public PlayerType playerType = PlayerType.Mouse;
+
+    // Defines what player it is.
+    public int playerNumber = 1;
+
+    // Change the speed of the character
     public float movementSpeed = 5f;
     
+    // is the player mounted to another actor, like the cheese is mounted on the cat?
+    public bool isMounted = false;
 
-    
+
+
+
+
+    // -------====== Private Variables ======-------
+
+    private string input_Horizontal;
+    private string input_Vertical;
+
+
+
+
+
+    // -------====== Functions ======-------
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        assignInputAccordingToPlayerNumber();
     }
 
     // Update is called once per frame
     void Update()
     {
+        movePlayer();
         
-        float p1_MoveHorizontal = Input.GetAxis("P1_Horizontal");
-        float p1_MoveVertical = Input.GetAxis("P1_Vertical");
-        float p2_MoveHorizontal = Input.GetAxis("P2_Horizontal");
-        float p2_MoveVertical = Input.GetAxis("P2_Vertical");
         
-        Vector3 p1_movement = new Vector3(p1_MoveHorizontal, p1_MoveVertical, 0f);
-        
-        transform.Translate(p1_movement * Time.deltaTime * movementSpeed);
-        
+    }
+
+    void movePlayer()
+    {
+        float moveHorizontal = Input.GetAxis(input_Horizontal);
+        float moveVertical = Input.GetAxis(input_Vertical);
+
+        Vector3 movement = new Vector3(moveHorizontal, moveVertical, 0f);
+
+        transform.Translate(movement * Time.deltaTime * movementSpeed);
+    }
+
+    void assignInputAccordingToPlayerNumber()
+    {
+        input_Horizontal = "P" + playerNumber + "_Horizontal";
+        input_Vertical = "P" + playerNumber + "_Vertical";
     }
     
     
    
+}
+
+public enum PlayerType
+{
+    Cheese,
+    Mouse
 }
