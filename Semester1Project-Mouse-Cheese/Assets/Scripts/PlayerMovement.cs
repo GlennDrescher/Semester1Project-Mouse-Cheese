@@ -84,7 +84,6 @@ public class PlayerMovement : MonoBehaviour
             float angle = Mathf.Atan2(body.velocity.y, body.velocity.x) * Mathf.Rad2Deg;
             Quaternion deltaRotation = Quaternion.AngleAxis(angle, Vector3.forward);
             Quaternion rotation = Quaternion.RotateTowards(transform.rotation, deltaRotation, rotationSpeed * Time.deltaTime);
-            //body.MoveRotation(body.rotation + rotationSpeed * Time.fixedDeltaTime);
             body.MoveRotation(rotation);
         }
     }
