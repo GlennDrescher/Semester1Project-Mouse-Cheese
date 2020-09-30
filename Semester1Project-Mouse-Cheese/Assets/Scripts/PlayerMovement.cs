@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public float rotationSpeed = 200f; // Rotation Speed in degrees per second
     
     // is the player mounted to another actor, like the cheese is mounted on the cat?
-    public bool isMounted = false; // Not used yet
+    public bool isMounting = false; // Not used yet
 
 
     // -------====== Private Variables ======-------
@@ -82,8 +82,10 @@ public class PlayerMovement : MonoBehaviour
         if (body.velocity != Vector2.zero)
         {
             float angle = Mathf.Atan2(body.velocity.y, body.velocity.x) * Mathf.Rad2Deg;
-            var q = Quaternion.AngleAxis(angle, Vector3.forward);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, q, rotationSpeed * Time.deltaTime);
+            Quaternion deltaRotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            Quaternion rotation = Quaternion.RotateTowards(transform.rotation, deltaRotation, rotationSpeed * Time.deltaTime);
+            //body.MoveRotation(body.rotation + rotationSpeed * Time.fixedDeltaTime);
+            body.MoveRotation(rotation);
         }
     }
 
