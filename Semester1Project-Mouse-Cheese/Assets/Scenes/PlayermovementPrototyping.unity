@@ -204,13 +204,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &871100829
+--- !u!1001 &1005722187
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 395156814984244798, guid: 81a91982020f22a448c80d2e37937621,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1245576250402091923, guid: 81a91982020f22a448c80d2e37937621,
         type: 3}
       propertyPath: m_Name
@@ -229,33 +234,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4339371211301835750, guid: 81a91982020f22a448c80d2e37937621,
         type: 3}
-      propertyPath: movementSpeed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4339371211301835750, guid: 81a91982020f22a448c80d2e37937621,
-        type: 3}
       propertyPath: playerNumber
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4339371211301835750, guid: 81a91982020f22a448c80d2e37937621,
-        type: 3}
-      propertyPath: moveSpeed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4339371211301835750, guid: 81a91982020f22a448c80d2e37937621,
-        type: 3}
-      propertyPath: rotationSpeed
-      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 8484516152921124503, guid: 81a91982020f22a448c80d2e37937621,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.478682
+      value: 10.247673
       objectReference: {fileID: 0}
     - target: {fileID: 8484516152921124503, guid: 81a91982020f22a448c80d2e37937621,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.059076
+      value: -1.7584372
       objectReference: {fileID: 0}
     - target: {fileID: 8484516152921124503, guid: 81a91982020f22a448c80d2e37937621,
         type: 3}
@@ -304,42 +294,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81a91982020f22a448c80d2e37937621, type: 3}
---- !u!1001 &1778553939
+--- !u!1001 &1766218569
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 395156814984244798, guid: 81a91982020f22a448c80d2e37937621,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1245576250402091923, guid: 81a91982020f22a448c80d2e37937621,
         type: 3}
       propertyPath: m_Name
-      value: Mouse
-      objectReference: {fileID: 0}
-    - target: {fileID: 4339371211301835750, guid: 81a91982020f22a448c80d2e37937621,
-        type: 3}
-      propertyPath: movementSpeed
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 4339371211301835750, guid: 81a91982020f22a448c80d2e37937621,
-        type: 3}
-      propertyPath: moveSpeed
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 4339371211301835750, guid: 81a91982020f22a448c80d2e37937621,
-        type: 3}
-      propertyPath: rotationSpeed
-      value: 500
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8484516152921124503, guid: 81a91982020f22a448c80d2e37937621,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.608875
+      value: -4.3171587
       objectReference: {fileID: 0}
     - target: {fileID: 8484516152921124503, guid: 81a91982020f22a448c80d2e37937621,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.394006
+      value: -0.33747792
       objectReference: {fileID: 0}
     - target: {fileID: 8484516152921124503, guid: 81a91982020f22a448c80d2e37937621,
         type: 3}
