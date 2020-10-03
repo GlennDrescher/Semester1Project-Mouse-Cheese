@@ -35,9 +35,9 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
+  - P1-Cam
+  - P2-Cam
+  - AP-Cam
   m_SortingLayers:
   - name: Default
     uniqueID: 0
