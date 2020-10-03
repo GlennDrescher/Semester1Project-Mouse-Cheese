@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     // Change the speed of the character
     public float moveSpeed = 15f;
     public float rotationSpeed = 200f; // Rotation Speed in degrees per second
+    public bool usingLocalControl = false;
     
     // is the player mounted to another actor, like the cheese is mounted on the cat?
     public bool isMounting = false; // Not used yet
@@ -52,7 +53,15 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         // Move the rigidBody according to move... Variables
-        MovePlayer();
+        if (usingLocalControl)
+        {
+            MovePlayerWithLocalControl();
+        }
+        else
+        {
+            MovePlayerWithWorldSpaceControl();
+        }
+
     }
 
 
@@ -63,18 +72,22 @@ public class PlayerMovement : MonoBehaviour
     {
         moveHorizontal = Input.GetAxis("P" + playerNumber + "_Horizontal");
         moveVertical = Input.GetAxis("P" + playerNumber + "_Vertical");
+
+
     }
 
-    // Moves and rotates the player depending on the input
-    void MovePlayer()
+    // Moves and rotates the player depending on the input in Worldspace
+    void MovePlayerWithWorldSpaceControl()
     {
+
         // Check for diagonal Movement
-        if (moveHorizontal != 0 && moveVertical != 0) 
+        if (moveHorizontal != 0 && moveVertical != 0)
         {
             // Modify diagonal movement speed
             moveHorizontal *= diagonalMovementModifier;
             moveVertical *= diagonalMovementModifier;
         }
+
         // Move player according to input direction
         body.velocity = new Vector2(moveHorizontal * moveSpeed, moveVertical * moveSpeed);
 
@@ -87,6 +100,15 @@ public class PlayerMovement : MonoBehaviour
             //body.MoveRotation(body.rotation + rotationSpeed * Time.fixedDeltaTime);
             body.MoveRotation(rotation);
         }
+    }
+
+    void MovePlayerWithLocalControl()
+    {
+        Vector2 direction = new Vector2(transform.right.x, transform.right.y);
+        body.velocity = direction * moveVertical * moveSpeed;
+
+        // body.AddTorque((moveHorizontal * -1) * rotationSpeed); // angularVelocity works snappier than Add.Torque
+        body.angularVelocity = moveHorizontal * -1 * rotationSpeed;
     }
 
 
