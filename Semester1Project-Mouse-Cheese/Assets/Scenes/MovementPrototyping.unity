@@ -137,7 +137,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.4043983, y: -0.13477702}
@@ -1863,6 +1863,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mount
       objectReference: {fileID: 0}
+    - target: {fileID: 5041580435331454651, guid: 434b354647818464d9d042d359887dfb,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8427601776874371497, guid: 434b354647818464d9d042d359887dfb,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 434b354647818464d9d042d359887dfb, type: 3}
 --- !u!1 &1582805324 stripped
@@ -1884,9 +1894,25 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.11234792, y: -0.067409515}
+  m_Offset: {x: 0.13389239, y: -0.067409515}
   serializedVersion: 2
-  m_Radius: 2.814331
+  m_Radius: 3.3098638
+--- !u!70 &1582805331
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1582805324}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.3662647, y: -0.021545775}
+  m_Size: {x: 3.9074895, y: 2.7213054}
+  m_Direction: 1
 --- !u!1001 &1613787590
 PrefabInstance:
   m_ObjectHideFlags: 0

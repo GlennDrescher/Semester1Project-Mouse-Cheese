@@ -16,12 +16,12 @@ public class PlayerMovement : MonoBehaviour
 
     // Change the speed of the character
     public float moveSpeed = 15f;
-    public float rotationSpeed = 200f; // Rotation Speed in degrees per second
+    public float rotationSpeed = 200f;   // Rotation Speed in degrees per second
     public bool usingLocalControl = false;
-    
-    // is the player mounted to another actor, like the cheese is mounted on the cat?
-    public bool isMounting = false; // Not used yet
 
+    public float mountedMoveSpeed;
+    public float mountedRotationSpeed;
+    
 
 
 
@@ -33,12 +33,15 @@ public class PlayerMovement : MonoBehaviour
     private float moveVertical;
     private readonly float diagonalMovementModifier = 0.7f; // Modifies the diagonal movement speed
 
-    // Saved the objects rigid body
-    private Rigidbody2D body;
+    // Saved the objects rigid body, it will change if fx. it is mounted something.
+    public Rigidbody2D body;
 
 
     // Activating and Mounting
     private GameObject closeToActivatable = null;
+
+    private bool mounted = false; // is the player mounted to another actor, like the cheese is mounted on the cat?
+    private GameObject mountedTo = null;
 
 
 
@@ -73,32 +76,35 @@ public class PlayerMovement : MonoBehaviour
 
         UpdateMoveAxis();
 
-        if (closeToActivatable != null)
+        if (closeToActivatable != null && closeToActivatable.CompareTag("Mounts"))
         {
-            if (!isMounting)
+            if (!mounted)
             {
                 PlayerMounting();
             }
 
         }
 
+
+        // If Mounted the cheese follows the cat
+        if (mounted)
+        {
+            transform.position = mountedTo.transform.position;
+            transform.rotation = mountedTo.transform.rotation;
+        }
+
     }
 
     private void FixedUpdate()
     {
-        GetComponent<Rigidbody2D>().simulated = !isMounting;
-        if (!isMounting)
+        // Move the rigidBody according to move... Variables
+        if (usingLocalControl)
         {
-
-            // Move the rigidBody according to move... Variables
-            if (usingLocalControl)
-            {
-                MovePlayerWithLocalControl();
-            }
-            else
-            {
-                MovePlayerWithWorldSpaceControl();
-            }
+            MoveObjectWithLocalControl();
+        }
+        else
+        {
+            MoveObjectWithWorldSpaceControl();
         }
     }
 
@@ -110,16 +116,13 @@ public class PlayerMovement : MonoBehaviour
     // Simply gets the input values and updates the variables in realtime depending on the playerNumber
     void UpdateMoveAxis()
     {
-        if (!isMounting)
-        {
-            moveHorizontal = Input.GetAxis("P" + playerNumber + "_Horizontal");
-            moveVertical = Input.GetAxis("P" + playerNumber + "_Vertical");
-        }
+        moveHorizontal = Input.GetAxis("P" + playerNumber + "_Horizontal");
+        moveVertical = Input.GetAxis("P" + playerNumber + "_Vertical");
     }
 
 
     // Moves and rotates the player depending on the input in Worldspace
-    void MovePlayerWithWorldSpaceControl()
+    void MoveObjectWithWorldSpaceControl()
     {
 
         // Check for diagonal Movement
@@ -138,7 +141,7 @@ public class PlayerMovement : MonoBehaviour
         {
             float angle = Mathf.Atan2(body.velocity.y, body.velocity.x) * Mathf.Rad2Deg;
             Quaternion deltaRotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            Quaternion rotation = Quaternion.RotateTowards(transform.rotation, deltaRotation, rotationSpeed * Time.deltaTime);
+            Quaternion rotation = Quaternion.RotateTowards(body.gameObject.transform.rotation, deltaRotation, rotationSpeed * Time.deltaTime);
             //body.MoveRotation(body.rotation + rotationSpeed * Time.fixedDeltaTime);
             body.MoveRotation(rotation);
         }
@@ -146,11 +149,11 @@ public class PlayerMovement : MonoBehaviour
 
 
     // Moves and rotates the player depending on the input around objects axis
-    void MovePlayerWithLocalControl()
+    void MoveObjectWithLocalControl()
     {
-        Vector2 direction = new Vector2(transform.right.x, transform.right.y);
+        Vector2 direction = body.transform.up;
         //body.velocity = direction * moveVertical * moveSpeed;
-        body.AddForce(direction * moveVertical * moveSpeed * 50);
+        body.AddForce(body.transform.right * moveVertical * moveSpeed * 100);
 
         // body.AddTorque((moveHorizontal * -1) * rotationSpeed); // angularVelocity works snappier than Add.Torque
         //body.angularVelocity = moveHorizontal * -1 * rotationSpeed;
@@ -168,19 +171,26 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetAxis("P" + playerNumber + "_Activate") == 1
             && playerType == PlayerType.Cheese)
         {
-            isMounting = true;
-            transform.position = closeToActivatable.transform.position;
+            mounted = true;
+            mountedTo = closeToActivatable;
+            GetComponent<Rigidbody2D>().simulated = false;
+            body = mountedTo.GetComponent<Rigidbody2D>();
+
+            moveSpeed = mountedMoveSpeed;
+            rotationSpeed = mountedRotationSpeed;
+
+
         }
+
     }
 
+
+    // !!!! NOT WORKING
     void PlayerDismounting()
     {
-        if (Input.GetAxis("P" + playerNumber + "_Activate") == 1
-                    && playerType == PlayerType.Cheese)
-        {
-            isMounting = false;
-            transform.position = new Vector3(0, 0, 0);
-        }
+        mounted = false;
+        body = gameObject.GetComponent<Rigidbody2D>();
+        transform.position = new Vector3(0, 0, 0);
     }
 
 
@@ -191,6 +201,23 @@ public class PlayerMovement : MonoBehaviour
     void InitializePlayer()
     {
         body = GetComponent<Rigidbody2D>();
+
+
+        if (usingLocalControl)
+        {
+            moveSpeed *= 10;
+            rotationSpeed *= 150;
+
+            mountedMoveSpeed = moveSpeed * 2;
+            mountedRotationSpeed = rotationSpeed;
+        } else if (!usingLocalControl)
+        {
+            moveSpeed *= 1;
+            rotationSpeed *= 1;
+
+            mountedMoveSpeed = moveSpeed * 2;
+            mountedRotationSpeed = rotationSpeed * 2;
+        }
 
         // Assigns the right textures as sprite depending on inspector settings of the player type
         AssignTextureSprite();
