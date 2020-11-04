@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 
-    // -------====== Public Variables ======-------
+// -------====== Public Variables ======-------
 
     // What kind is the player? is it a cheese or a Mouse?
     public PlayerType playerType = PlayerType.Mouse;
@@ -16,13 +16,16 @@ public class PlayerMovement : MonoBehaviour
 
     // Change the speed of the character
     public float moveSpeed = 15f;
-    public float rotationSpeed = 200f; // Rotation Speed in degrees per second
+    public float rotationSpeed = 200f;   // Rotation Speed in degrees per second
+    public bool usingLocalControl = false;
+
+    public float mountedMoveSpeed;
+    public float mountedRotationSpeed;
     
-    // is the player mounted to another actor, like the cheese is mounted on the cat?
-    public bool isMounting = false; // Not used yet
 
 
-    // -------====== Private Variables ======-------
+
+// -------====== Private Variables ======-------
 
     // Created the Variables here so they are accessible everywhere and only changed up update
     // it gives a performance increase if the variables are only changed instead of created new ones every frame
@@ -30,11 +33,19 @@ public class PlayerMovement : MonoBehaviour
     private float moveVertical;
     private readonly float diagonalMovementModifier = 0.7f; // Modifies the diagonal movement speed
 
-    // Saved the objects rigid body
-    private Rigidbody2D body;
+    // Saved the objects rigid body, it will change if fx. it is mounted something.
+    public Rigidbody2D body;
 
 
-    // -------====== Flow Functions ======-------
+    // Activating and Mounting
+    private GameObject closeToActivatable = null;
+
+    private bool mounted = false; // is the player mounted to another actor, like the cheese is mounted on the cat?
+    private GameObject mountedTo = null;
+
+
+
+// -------====== Flow Functions ======-------
 
     // Start is called before the first frame update
     void Start()
@@ -42,21 +53,65 @@ public class PlayerMovement : MonoBehaviour
         InitializePlayer();
     }
 
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        closeToActivatable = collision.gameObject;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        closeToActivatable = null;
+    }
+
+
+
+
+    // -------====== Update Functions ======-------
+
     // Update is called once per frame
     void Update()
     {
         // Check every frame for key input and update the variables
+
         UpdateMoveAxis();
+
+        if (closeToActivatable != null && closeToActivatable.CompareTag("Mounts"))
+        {
+            if (!mounted)
+            {
+                PlayerMounting();
+            }
+
+        }
+
+
+        // If Mounted the cheese follows the cat
+        if (mounted)
+        {
+            transform.position = mountedTo.transform.position;
+            transform.rotation = mountedTo.transform.rotation;
+        }
+
     }
 
     private void FixedUpdate()
     {
         // Move the rigidBody according to move... Variables
-        MovePlayer();
+        if (usingLocalControl)
+        {
+            MoveObjectWithLocalControl();
+        }
+        else
+        {
+            MoveObjectWithWorldSpaceControl();
+        }
     }
 
 
-    // -------====== Update Functions ======-------
+
+
+// -------====== Movement Functions ======-------
 
     // Simply gets the input values and updates the variables in realtime depending on the playerNumber
     void UpdateMoveAxis()
@@ -65,16 +120,19 @@ public class PlayerMovement : MonoBehaviour
         moveVertical = Input.GetAxis("P" + playerNumber + "_Vertical");
     }
 
-    // Moves and rotates the player depending on the input
-    void MovePlayer()
+
+    // Moves and rotates the player depending on the input in Worldspace
+    void MoveObjectWithWorldSpaceControl()
     {
+
         // Check for diagonal Movement
-        if (moveHorizontal != 0 && moveVertical != 0) 
+        if (moveHorizontal != 0 && moveVertical != 0)
         {
             // Modify diagonal movement speed
             moveHorizontal *= diagonalMovementModifier;
             moveVertical *= diagonalMovementModifier;
         }
+
         // Move player according to input direction
         body.velocity = new Vector2(moveHorizontal * moveSpeed, moveVertical * moveSpeed);
 
@@ -83,10 +141,56 @@ public class PlayerMovement : MonoBehaviour
         {
             float angle = Mathf.Atan2(body.velocity.y, body.velocity.x) * Mathf.Rad2Deg;
             Quaternion deltaRotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            Quaternion rotation = Quaternion.RotateTowards(transform.rotation, deltaRotation, rotationSpeed * Time.deltaTime);
+            Quaternion rotation = Quaternion.RotateTowards(body.gameObject.transform.rotation, deltaRotation, rotationSpeed * Time.deltaTime);
             //body.MoveRotation(body.rotation + rotationSpeed * Time.fixedDeltaTime);
             body.MoveRotation(rotation);
         }
+    }
+
+
+    // Moves and rotates the player depending on the input around objects axis
+    void MoveObjectWithLocalControl()
+    {
+        Vector2 direction = body.transform.up;
+        //body.velocity = direction * moveVertical * moveSpeed;
+        body.AddForce(body.transform.right * moveVertical * moveSpeed * 100);
+
+        // body.AddTorque((moveHorizontal * -1) * rotationSpeed); // angularVelocity works snappier than Add.Torque
+        //body.angularVelocity = moveHorizontal * -1 * rotationSpeed;
+        body.AddTorque(moveHorizontal * -1 * rotationSpeed);
+    }
+
+
+
+// -------====== Mounting Functions ======-------
+
+    void PlayerMounting()
+    {
+
+        // If Cheese is close to cat
+        if (Input.GetAxis("P" + playerNumber + "_Activate") == 1
+            && playerType == PlayerType.Cheese)
+        {
+            mounted = true;
+            mountedTo = closeToActivatable;
+            GetComponent<Rigidbody2D>().simulated = false;
+            body = mountedTo.GetComponent<Rigidbody2D>();
+
+            moveSpeed = mountedMoveSpeed;
+            rotationSpeed = mountedRotationSpeed;
+
+
+        }
+
+    }
+
+
+    // !!!! NOT WORKING
+    void PlayerDismounting()
+    {
+        mounted = false;
+        body = gameObject.GetComponent<Rigidbody2D>();
+        transform.position = new Vector3(0, 0, 0);
     }
 
 
@@ -98,6 +202,23 @@ public class PlayerMovement : MonoBehaviour
     {
         body = GetComponent<Rigidbody2D>();
 
+
+        if (usingLocalControl)
+        {
+            moveSpeed *= 10;
+            rotationSpeed *= 150;
+
+            mountedMoveSpeed = moveSpeed * 2;
+            mountedRotationSpeed = rotationSpeed;
+        } else if (!usingLocalControl)
+        {
+            moveSpeed *= 1;
+            rotationSpeed *= 1;
+
+            mountedMoveSpeed = moveSpeed * 2;
+            mountedRotationSpeed = rotationSpeed * 2;
+        }
+
         // Assigns the right textures as sprite depending on inspector settings of the player type
         AssignTextureSprite();
     }
@@ -108,9 +229,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (playerType == PlayerType.Cheese)
         {
+            gameObject.tag = "Cheese";
             gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("Actors/cheese", typeof(Sprite)) as Sprite;
         } else
         {
+            gameObject.tag = "Mouse";
             gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("Actors/mouse", typeof(Sprite)) as Sprite;
         }
     }
