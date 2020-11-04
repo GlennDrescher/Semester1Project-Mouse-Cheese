@@ -151,13 +151,8 @@ public class PlayerMovement : MonoBehaviour
     // Moves and rotates the player depending on the input around objects axis
     void MoveObjectWithLocalControl()
     {
-        Vector2 direction = body.transform.up;
-        //body.velocity = direction * moveVertical * moveSpeed;
-        body.AddForce(body.transform.right * moveVertical * moveSpeed * 100);
-
-        // body.AddTorque((moveHorizontal * -1) * rotationSpeed); // angularVelocity works snappier than Add.Torque
-        //body.angularVelocity = moveHorizontal * -1 * rotationSpeed;
-        body.AddTorque(moveHorizontal * -1 * rotationSpeed);
+        body.AddForce(body.transform.right * moveVertical * moveSpeed * 850);
+        body.AddTorque(moveHorizontal * -1 * rotationSpeed * 100);
     }
 
 
@@ -175,11 +170,6 @@ public class PlayerMovement : MonoBehaviour
             mountedTo = closeToActivatable;
             GetComponent<Rigidbody2D>().simulated = false;
             body = mountedTo.GetComponent<Rigidbody2D>();
-
-            moveSpeed = mountedMoveSpeed;
-            rotationSpeed = mountedRotationSpeed;
-
-
         }
 
     }
@@ -205,8 +195,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (usingLocalControl)
         {
-            moveSpeed *= 10;
-            rotationSpeed *= 150;
+            moveSpeed *= 1;
+            rotationSpeed *= 1;
 
             mountedMoveSpeed = moveSpeed * 2;
             mountedRotationSpeed = rotationSpeed;
@@ -236,6 +226,10 @@ public class PlayerMovement : MonoBehaviour
             gameObject.tag = "Mouse";
             gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("Actors/mouse", typeof(Sprite)) as Sprite;
         }
+
+
+        Destroy(GetComponent<PolygonCollider2D>());
+        gameObject.AddComponent<PolygonCollider2D>();
     }
 }
 
