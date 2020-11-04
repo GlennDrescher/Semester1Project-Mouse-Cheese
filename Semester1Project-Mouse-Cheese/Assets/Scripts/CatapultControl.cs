@@ -9,6 +9,7 @@ public class CatapultControl : MonoBehaviour
     private bool colcheck;
     private GameObject catapult;
     private Vector2 mountpos;
+    public float catapultedSpeed = 0;
     
 
     // Start is called before the first frame update
@@ -29,18 +30,29 @@ public class CatapultControl : MonoBehaviour
         if (collision.gameObject.tag.Equals("catapult") == true)
         {
             Debug.Log("Virker det her??");
+            
+            
+            
             if (gameObject.tag.Equals("Cheese"))
             {
-
-                mountpos = GameObject.FindGameObjectWithTag("Mounts").transform.position;
-                gameObject.transform.position = new Vector2(mountpos.x,mountpos.y);
-                Debug.Log("Test");
+                
+                
             }
-            else
-            {
-                Debug.Log("Det virker IKKE... :(");
-            }
+            
         }
+    }
+    private void CatapultLaunch()
+    {
+        mountpos = GameObject.FindGameObjectWithTag("Mounts").transform.position;
+        gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+
+
+
+        transform.position = Vector2.MoveTowards(transform.position, mountpos, catapultedSpeed * Time.deltaTime);
+
+
+
+        Debug.Log("Test");
     }
 
 
