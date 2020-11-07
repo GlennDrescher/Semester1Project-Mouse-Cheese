@@ -3,7 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
+<<<<<<< HEAD
   tags: []
+=======
+  tags:
+  - Mounts
+  - Cheese
+  - Mouse
+  - Pickup
+  - Activatable
+>>>>>>> master
   layers:
   - Default
   - TransparentFX
@@ -34,9 +43,15 @@ TagManager:
   - 
   - 
   - 
+<<<<<<< HEAD
   - P1-Cam
   - P2-Cam
   - AP-Cam
+=======
+  - 
+  - 
+  - 
+>>>>>>> master
   m_SortingLayers:
   - name: Default
     uniqueID: 0
