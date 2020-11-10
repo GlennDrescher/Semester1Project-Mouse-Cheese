@@ -1,6 +1,15 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 33bd4b7b878fd594899f06d827f8d1b4
 folderAsset: yes
+=======
+<<<<<<< HEAD:Semester1Project-Mouse-Cheese/Assets/Prefabs/Walls.meta
+guid: 33bd4b7b878fd594899f06d827f8d1b4
+folderAsset: yes
+=======
+guid: 491509e5d86f8c64dac4f3c4eab38b5f
+>>>>>>> master:Semester1Project-Mouse-Cheese/Assets/Scenes/MovementPrototyping.unity.meta
+>>>>>>> SplitScreen
 DefaultImporter:
   externalObjects: {}
   userData: 

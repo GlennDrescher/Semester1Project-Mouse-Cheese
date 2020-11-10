@@ -5,10 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Mounts
-  - Cheese
   - Mouse
-  - Pickup
-  - Activatable
+  - Cheese
   layers:
   - Default
   - TransparentFX
@@ -18,8 +16,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - P1
+  - P2
   - 
   - 
   - 
