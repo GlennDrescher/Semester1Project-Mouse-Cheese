@@ -228,8 +228,8 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        Destroy(GetComponent<PolygonCollider2D>());
         gameObject.AddComponent<PolygonCollider2D>();
+        gameObject.AddComponent<CompositeCollider2D>();
     }
 }
 
