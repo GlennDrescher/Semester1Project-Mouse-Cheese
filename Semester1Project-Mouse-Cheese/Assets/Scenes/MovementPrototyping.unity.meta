@@ -1,5 +1,10 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Semester1Project-Mouse-Cheese/Assets/Prefabs/Walls.meta
+guid: 36d975e157cf8454587cdba155db628e
+folderAsset: yes
+=======
 guid: 491509e5d86f8c64dac4f3c4eab38b5f
+>>>>>>> master:Semester1Project-Mouse-Cheese/Assets/Scenes/MovementPrototyping.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
