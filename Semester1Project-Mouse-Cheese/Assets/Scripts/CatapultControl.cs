@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -6,10 +7,15 @@ using UnityEngine.UIElements;
 public class CatapultControl : MonoBehaviour
 
 {
-    private bool colcheck;
+    private GameObject colcheck = null;
     private GameObject catapult;
     private Vector2 mountpos;
-    public float catapultedSpeed = 0;
+    public float catapultedSpeed = 5;
+    public string playerInteractionKey;
+    private bool flyingToggle = false;
+    public bool cheeseFlying = false;
+    
+
     
 
     // Start is called before the first frame update
@@ -21,39 +27,84 @@ public class CatapultControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (flyingToggle == true)
+        {
+            if (colcheck != null)
+            {
+                cheeseFlying = true;
+               
+            }
+            
+        }
+
+        if (cheeseFlying == true)
+        {
+            mountpos = GameObject.FindGameObjectWithTag("Mounts").transform.position;
+            gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+            gameObject.transform.position = Vector3.MoveTowards(transform.position, mountpos, catapultedSpeed * Time.deltaTime);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space/*husk playerInteractionKey her*/))
+        {
+
+            flyingToggle = true;
+
+
+            
+        }
+        if(Input.GetKeyUp(KeyCode.Space /*husk playerInteractionKey her*/))
+        {
+            flyingToggle = false;
+        }
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
+        
         Debug.Log("djdjd");
         if (collision.gameObject.tag.Equals("catapult") == true)
         {
             Debug.Log("Virker det her??");
             
+
             
             
+
             if (gameObject.tag.Equals("Cheese"))
             {
-                
-                
+
+                colcheck = collision.gameObject;
+
+
+
+
+
+                Debug.Log("Test");
+
             }
             
         }
+        if (collision.gameObject.tag.Equals("Mounts") == true)
+        {
+            if (cheeseFlying == true)
+            { 
+                colcheck = null;
+                cheeseFlying = false;
+                Debug.Log("Variables should be disabled.");
+                gameObject.GetComponent<PlayerMovement>().isMounting = true;
+            }
+        }
+       
     }
-    private void CatapultLaunch()
+    
+    
+
+    /*IEnumerator charMove()
     {
-        mountpos = GameObject.FindGameObjectWithTag("Mounts").transform.position;
-        gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+        charCheck = OnCollision2D()
 
-
-
-        transform.position = Vector2.MoveTowards(transform.position, mountpos, catapultedSpeed * Time.deltaTime);
-
-
-
-        Debug.Log("Test");
-    }
+    }*/
+    
 
 
 }

@@ -61,8 +61,13 @@ public class PlayerMovement : MonoBehaviour
     // Simply gets the input values and updates the variables in realtime depending on the playerNumber
     void UpdateMoveAxis()
     {
-        moveHorizontal = Input.GetAxis("P" + playerNumber + "_Horizontal");
-        moveVertical = Input.GetAxis("P" + playerNumber + "_Vertical");
+        if (gameObject.GetComponent<CatapultControl>().cheeseFlying == false)
+        {
+            moveHorizontal = Input.GetAxis("P" + playerNumber + "_Horizontal");
+            moveVertical = Input.GetAxis("P" + playerNumber + "_Vertical");
+        }
+
+        
     }
 
     // Moves and rotates the player depending on the input
