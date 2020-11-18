@@ -91,7 +91,7 @@ public class CatapultControl : MonoBehaviour
                 colcheck = null;
                 cheeseFlying = false;
                 Debug.Log("Variables should be disabled.");
-                gameObject.GetComponent<PlayerMovement>().isMounting = true;
+                gameObject.GetComponent<PlayerMovement>().PlayerMounting();
             }
         }
        

@@ -164,7 +164,7 @@ public class PlayerMovement : MonoBehaviour
 
 // -------====== Mounting Functions ======-------
 
-    void PlayerMounting()
+    public void PlayerMounting()
     {
 
         // If Cheese is close to cat
@@ -233,8 +233,8 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        Destroy(GetComponent<PolygonCollider2D>());
         gameObject.AddComponent<PolygonCollider2D>();
+        gameObject.AddComponent<CompositeCollider2D>();
     }
 }
 
