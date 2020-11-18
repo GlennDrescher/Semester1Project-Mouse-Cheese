@@ -4,9 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - catapult
+  - Cheese
   - Mounts
   - Mouse
-  - Cheese
   layers:
   - Default
   - TransparentFX

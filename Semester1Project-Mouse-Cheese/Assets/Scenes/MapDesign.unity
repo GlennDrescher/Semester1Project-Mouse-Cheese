@@ -331,6 +331,12 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2419696921564790669, guid: 81a91982020f22a448c80d2e37937621,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: de10e65aa6dfa48b2957b597f1a6ef07,
+        type: 3}
     - target: {fileID: 4339371211301835750, guid: 81a91982020f22a448c80d2e37937621,
         type: 3}
       propertyPath: playerNumber
@@ -339,12 +345,12 @@ PrefabInstance:
     - target: {fileID: 8484516152921124503, guid: 81a91982020f22a448c80d2e37937621,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 146.6
+      value: 54.8
       objectReference: {fileID: 0}
     - target: {fileID: 8484516152921124503, guid: 81a91982020f22a448c80d2e37937621,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -132.5
+      value: -44.7
       objectReference: {fileID: 0}
     - target: {fileID: 8484516152921124503, guid: 81a91982020f22a448c80d2e37937621,
         type: 3}
@@ -391,7 +397,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 137.58
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8390370401469397769, guid: 81a91982020f22a448c80d2e37937621, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 81a91982020f22a448c80d2e37937621, type: 3}
 --- !u!1 &1750601881 stripped
 GameObject:
