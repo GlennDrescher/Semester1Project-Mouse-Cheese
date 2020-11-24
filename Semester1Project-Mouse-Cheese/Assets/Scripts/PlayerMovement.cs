@@ -166,15 +166,33 @@ public class PlayerMovement : MonoBehaviour
 
     public void PlayerMounting()
     {
-
+        
         // If Cheese is close to cat
         if (Input.GetAxis("P" + playerNumber + "_Activate") == 1
-            && playerType == PlayerType.Cheese)
+            && playerType == PlayerType.Cheese
+            || playerType == PlayerType.Cheese && gameObject.GetComponent<CatapultControl>().cheeseFlying == true)
         {
+            Debug.Log("Funktionen køres");
             mounted = true;
+            if (mounted == true)
+            {
+                Debug.Log("mount er sandt");
+            }
             mountedTo = closeToActivatable;
+            if (mountedTo == closeToActivatable)
+            {
+                Debug.Log("mountTo virker");
+            }
             GetComponent<Rigidbody2D>().simulated = false;
+            if (GetComponent<Rigidbody2D>().simulated == false)
+            {
+                Debug.Log("simulated-ness virker");
+            }
             body = mountedTo.GetComponent<Rigidbody2D>();
+            if(body == mountedTo.GetComponent<Rigidbody2D>())
+            {
+                Debug.Log("body variabel virker");
+            }
         }
 
     }
@@ -186,6 +204,7 @@ public class PlayerMovement : MonoBehaviour
         mounted = false;
         body = gameObject.GetComponent<Rigidbody2D>();
         transform.position = new Vector3(0, 0, 0);
+        gameObject.GetComponent<PolygonCollider2D>().isTrigger = true;
     }
 
 
