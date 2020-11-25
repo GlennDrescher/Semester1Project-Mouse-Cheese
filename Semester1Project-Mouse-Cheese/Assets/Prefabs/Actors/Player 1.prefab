@@ -51,7 +51,10 @@ MonoBehaviour:
   playerNumber: 1
   moveSpeed: 15
   rotationSpeed: 200
-  isMounting: 0
+  usingLocalControl: 0
+  mountedMoveSpeed: 0
+  mountedRotationSpeed: 0
+  body: {fileID: 0}
 --- !u!212 &5390679166621660860
 SpriteRenderer:
   m_ObjectHideFlags: 0
