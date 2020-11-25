@@ -220,7 +220,7 @@ public class PlayerMovement : MonoBehaviour
         if (playerType == PlayerType.Cheese)
         {
             gameObject.tag = "Cheese";
-            gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("Actors/cheese", typeof(Sprite)) as Sprite;
+            gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("Actors/Animations/Cheese/Idle/Anim_Cheese_Idle0000", typeof(Sprite)) as Sprite;
         } else
         {
             gameObject.tag = "Mouse";
