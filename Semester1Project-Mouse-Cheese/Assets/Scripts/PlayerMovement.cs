@@ -166,11 +166,12 @@ public class PlayerMovement : MonoBehaviour
 
     public void PlayerMounting()
     {
-        
-        // If Cheese is close to cat
+
+        // If Cheese is close to cat or if the cheese is flying
         if (Input.GetAxis("P" + playerNumber + "_Activate") == 1
             && playerType == PlayerType.Cheese
             || playerType == PlayerType.Cheese && gameObject.GetComponent<CatapultControl>().cheeseFlying == true)
+            //gameObject.GetComponent<PolygonCollider2D>().enabled = false;
         {
             Debug.Log("Funktionen køres");
             mounted = true;
@@ -193,6 +194,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 Debug.Log("body variabel virker");
             }
+            gameObject.GetComponent<CatapultControl>().cheeseFlying = false;
         }
 
     }
