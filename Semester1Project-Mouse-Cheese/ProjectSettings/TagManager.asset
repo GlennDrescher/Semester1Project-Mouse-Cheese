@@ -4,11 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Mounts
+  - catapult
   - Cheese
+  - Mounts
   - Mouse
-  - Pickup
-  - Activatable
   layers:
   - Default
   - TransparentFX
@@ -18,8 +17,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - P1
+  - P2
   - 
   - 
   - 
@@ -43,6 +42,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Ground
+    uniqueID: 4190026763
+    locked: 0
+  - name: Walls
+    uniqueID: 3914494285
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Actors
+    uniqueID: 2168326307
     locked: 0

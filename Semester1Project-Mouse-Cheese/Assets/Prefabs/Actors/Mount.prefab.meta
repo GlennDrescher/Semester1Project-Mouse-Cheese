@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Semester1Project-Mouse-Cheese/Assets/Scenes/SplitScreenCamera.unity.meta
+guid: 6af68cb2a5791ef49ba5b4eb1615c91a
+DefaultImporter:
+=======
 guid: 434b354647818464d9d042d359887dfb
 PrefabImporter:
+>>>>>>> master:Semester1Project-Mouse-Cheese/Assets/Prefabs/Actors/Mount.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
