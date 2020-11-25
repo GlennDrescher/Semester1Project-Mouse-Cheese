@@ -10,7 +10,7 @@ public class CatapultControl : MonoBehaviour
     private GameObject colcheck = null;
     private GameObject catapult;
     private Vector2 mountpos;
-    public float catapultedSpeed = 5;
+    public float catapultedSpeed = 70;
     public string playerInteractionKey;
     private bool flyingToggle = false;
     public bool cheeseFlying = false;
@@ -40,8 +40,32 @@ public class CatapultControl : MonoBehaviour
         if (cheeseFlying == true)
         {
             mountpos = GameObject.FindGameObjectWithTag("Mounts").transform.position;
-            gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+
+
+            //Physics2D.IgnoreCollision = false;
+            //gameObject.GetComponent<Rigidbody2D>().GetComponent<> = false;
+            //Physics2D.IgnoreCollision(gameObject.GetComponent<PolygonCollider2D>(), GameObject.FindGameObjectWithTag("Walls").GetComponent<TileMapCollider2D>());
+            gameObject.GetComponent<PolygonCollider2D>().isTrigger = true;
+
             gameObject.transform.position = Vector3.MoveTowards(transform.position, mountpos, catapultedSpeed * Time.deltaTime);
+            if (gameObject.transform.position.x == mountpos.x && gameObject.transform.position.y == mountpos.y)
+            {
+                if (cheeseFlying == true)
+                {
+                    colcheck = null;
+                    GameObject mountObject = GameObject.FindGameObjectWithTag("Mounts");
+
+                    
+
+                    gameObject.GetComponent<PlayerMovement>().PlayerMounting();
+                    
+                    cheeseFlying = false;
+                    Debug.Log("Variables should be disabled.");
+                    
+                    
+
+                }
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Space/*husk playerInteractionKey her*/))
@@ -58,6 +82,7 @@ public class CatapultControl : MonoBehaviour
         }
     }
 
+    //Check for collision with catapult
     private void OnCollisionEnter2D(Collision2D collision)
     {
         
@@ -69,7 +94,7 @@ public class CatapultControl : MonoBehaviour
 
             
             
-
+            //Check if this gameobject is a cheese
             if (gameObject.tag.Equals("Cheese"))
             {
 
@@ -84,16 +109,7 @@ public class CatapultControl : MonoBehaviour
             }
             
         }
-        if (collision.gameObject.tag.Equals("Mounts") == true)
-        {
-            if (cheeseFlying == true)
-            { 
-                colcheck = null;
-                cheeseFlying = false;
-                Debug.Log("Variables should be disabled.");
-                gameObject.GetComponent<PlayerMovement>().PlayerMounting();
-            }
-        }
+        
        
     }
     
