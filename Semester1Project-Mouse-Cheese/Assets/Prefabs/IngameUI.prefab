@@ -980,8 +980,8 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 9
+  m_SortingLayerID: -523856395
+  m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &1076365295041496467
 MonoBehaviour:
@@ -1080,8 +1080,8 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 9
+  m_SortingLayerID: -523856395
+  m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &1076365295244647809
 MonoBehaviour:
@@ -1309,7 +1309,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &181749723548991273
 RectTransform:
   m_ObjectHideFlags: 0

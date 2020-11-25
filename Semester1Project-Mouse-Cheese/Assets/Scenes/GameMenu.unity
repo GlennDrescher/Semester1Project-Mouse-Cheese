@@ -175,7 +175,7 @@ Camera:
   field of view: 60
   orthographic: 1
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -270,6 +270,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2100238448 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1645111835247188003, guid: 9a3e2b82ee0ef334ab9f44719425b8e9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1645111834807002917}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1645111834807002917
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -277,6 +283,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1645111833975628135, guid: 9a3e2b82ee0ef334ab9f44719425b8e9,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1645111833975628135, guid: 9a3e2b82ee0ef334ab9f44719425b8e9,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1645111833975628135, guid: 9a3e2b82ee0ef334ab9f44719425b8e9,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1645111833975628135, guid: 9a3e2b82ee0ef334ab9f44719425b8e9,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2100238448}
     - target: {fileID: 1645111835247188003, guid: 9a3e2b82ee0ef334ab9f44719425b8e9,
         type: 3}
       propertyPath: m_Name

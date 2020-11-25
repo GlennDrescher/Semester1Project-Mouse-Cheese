@@ -19,8 +19,8 @@ TagManager:
   - 
   - P1
   - P2
-  - 
-  - 
+  - Minimap
+  - Map
   - 
   - 
   - 
@@ -42,14 +42,26 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
   - name: Ground
     uniqueID: 4190026763
+    locked: 0
+  - name: Players
+    uniqueID: 281398531
     locked: 0
   - name: Walls
     uniqueID: 3914494285
     locked: 0
-  - name: Default
-    uniqueID: 0
+  - name: Splitscreen
+    uniqueID: 1661172129
+    locked: 0
+  - name: PlayerUI
+    uniqueID: 3771110901
+    locked: 0
+  - name: UI
+    uniqueID: 3014759311
     locked: 0
   - name: Actors
     uniqueID: 2168326307
