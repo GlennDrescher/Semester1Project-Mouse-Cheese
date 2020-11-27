@@ -4,13 +4,36 @@ using UnityEngine;
 
 public class Damage: MonoBehaviour
 {
-    public int damageAmount = 1;
-    private void OnTriggerEnter2D(Collider2D other)
+    [SerializeField] private Health _Health;
+
+    private float doDamage;
+
+    public float damage = 1;
+
+    public float coolDownTime = 5;
+
+    private float coolDown;
+
+    private void Start()
     {
-        Health H = other.GetComponent<Health>();
+        doDamage = damage;
+    }
 
-        if(H == null) return;
-
-        H.currentHealth = H.currentHealth - damageAmount;
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (Time.time > coolDown)
+        {
+            if (collision.CompareTag("Cheese"))
+            {
+                PlayerDamage();
+                coolDown = Time.time + coolDownTime;
+            }
+        }
+        
+    }
+    void PlayerDamage()
+    {
+        _Health.currentHealth = _Health.currentHealth - doDamage;
+        _Health.UpdateHealth();
     }
 }

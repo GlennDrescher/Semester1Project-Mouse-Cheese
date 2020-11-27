@@ -5,7 +5,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     //Players starting health.
-    public float maxHealth = 3f;
+    public float maxHealth = 3;
 
     //Players current health.
     public float currentHealth;
@@ -13,5 +13,13 @@ public class Health : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
+    }
+
+    public void UpdateHealth()
+    {
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
