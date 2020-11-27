@@ -22,7 +22,7 @@ public class MountMovement : MonoBehaviour
     // it gives a performance increase if the variables are only changed instead of created new ones every frame
     private float moveHorizontal;
     private float moveVertical;
-    private readonly float diagonalMovementModifier = 0.7f; // Modifies the diagonal movement speed
+    //private readonly float diagonalMovementModifier = 0.7f; // Modifies the diagonal movement speed
 
     // Saved the objects rigid body, it will change if fx. it is mounted something.
     public Rigidbody2D body;
