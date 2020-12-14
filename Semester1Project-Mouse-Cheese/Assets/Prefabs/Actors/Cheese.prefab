@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 8567445076153956025}
   - component: {fileID: 6060990507798999322}
   - component: {fileID: 7646219620793340947}
-  - component: {fileID: 2882308933510207408}
   - component: {fileID: 4841466795374429905}
+  - component: {fileID: 4913662819698268507}
   m_Layer: 0
   m_Name: Cheese
   m_TagString: Cheese
@@ -141,8 +141,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.2689036, y: 0.19906569}
-  m_Size: {x: 5.7091546, y: 2.5229728}
+  m_Offset: {x: -0.06654548, y: 0.042711258}
+  m_Size: {x: 8.998235, y: 8.721914}
   m_Direction: 1
 --- !u!114 &7646219620793340947
 MonoBehaviour:
@@ -159,20 +159,6 @@ MonoBehaviour:
   catapultedSpeed: 50
   playerInteractionKey: 
   cheeseFlying: 0
---- !u!114 &2882308933510207408
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7122268950519851796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de9718cdd26c4bc42aa8f3cf32e2044f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentHealth: 3
-  maxHealth: 3
 --- !u!95 &4841466795374429905
 Animator:
   serializedVersion: 3
@@ -192,3 +178,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4913662819698268507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7122268950519851796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3ca411eb1c88a47aafc00f612a16e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth: 3
+  CurrentHealth: 0

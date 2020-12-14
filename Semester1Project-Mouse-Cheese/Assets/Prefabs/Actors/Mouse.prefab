@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 2877314422082997222}
   - component: {fileID: 366793911283305541}
   - component: {fileID: 4257942224333744460}
-  - component: {fileID: 8722328347738204911}
+  - component: {fileID: 3795535745213094411}
+  - component: {fileID: 1090130900145191933}
   m_Layer: 0
   m_Name: Mouse
   m_TagString: Cheese
@@ -140,8 +141,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.2689036, y: 0.19906569}
-  m_Size: {x: 5.7091546, y: 2.5229728}
+  m_Offset: {x: 0.112118706, y: -0.07325482}
+  m_Size: {x: 8.859504, y: 3.7592797}
   m_Direction: 1
 --- !u!114 &4257942224333744460
 MonoBehaviour:
@@ -158,7 +159,7 @@ MonoBehaviour:
   catapultedSpeed: 50
   playerInteractionKey: 
   cheeseFlying: 0
---- !u!114 &8722328347738204911
+--- !u!114 &3795535745213094411
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -167,8 +168,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 3737013795760461387}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de9718cdd26c4bc42aa8f3cf32e2044f, type: 3}
+  m_Script: {fileID: 11500000, guid: 4ddc843e1474491409b91b2fdb3b53f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 3
-  maxHealth: 3
+  MaxHealth: 3
+  CurrentHealth: 0
+--- !u!114 &1090130900145191933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3737013795760461387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de4dd31ab0f120e49b9b56540ae6353b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  coolDownTime: 5

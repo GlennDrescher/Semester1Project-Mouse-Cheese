@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3076311342164665683}
   - component: {fileID: 5041580435331454651}
   - component: {fileID: 5564900995263435277}
+  - component: {fileID: 6370931297620261634}
   m_Layer: 0
   m_Name: Mount
   m_TagString: Mounts
@@ -326,3 +327,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 2.32
+--- !u!114 &6370931297620261634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3295322437045578694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8784e933a3deb2444aaa7e6b4bc37fc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  coolDownTime: 5
