@@ -8,6 +8,7 @@ TagManager:
   - Cheese
   - Mounts
   - Mouse
+  - Pickups
   layers:
   - Default
   - TransparentFX
@@ -50,6 +51,9 @@ TagManager:
     locked: 0
   - name: Walls
     uniqueID: 3914494285
+    locked: 0
+  - name: Pickups
+    uniqueID: 3124160339
     locked: 0
   - name: Actors
     uniqueID: 2168326307
