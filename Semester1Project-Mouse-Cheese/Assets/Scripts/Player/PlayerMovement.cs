@@ -177,7 +177,6 @@ public class PlayerMovement : MonoBehaviour
             mountedTo = closeToActivatable;
             GetComponent<Rigidbody2D>().simulated = false;
             body = mountedTo.GetComponent<Rigidbody2D>();
-
             gameObject.GetComponent<CatapultControl>().cheeseFlying = false;
         }
 

@@ -14,13 +14,16 @@ public class CatapultControl : MonoBehaviour
     public string playerInteractionKey; //Soon to be depricated. Used as placeholder for the actual interaction key.
     private bool buttonPress = false; //Button press switch to start the cheese flying sequence.
     public bool cheeseFlying = false; //Switch. Is the cheese flying?
-    
+
+
+    private int playerNumber;
 
     
 
     // Start is called before the first frame update
     void Start()
     {
+        playerNumber = gameObject.GetComponent<PlayerMovement>().playerNumber;
         catapult = GameObject.Find("catapult");
     }
 
@@ -80,7 +83,7 @@ public class CatapultControl : MonoBehaviour
         }
 
         //Catapult launch trigger on when pressed
-        if (Input.GetKeyDown(KeyCode.Space/*husk playerInteractionKey her*/))
+        if (Input.GetAxis("P" + playerNumber + "_Activate") == 1)
         {
 
             buttonPress = true;
