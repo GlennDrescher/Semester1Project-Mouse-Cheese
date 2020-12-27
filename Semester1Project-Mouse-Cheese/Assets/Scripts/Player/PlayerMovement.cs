@@ -173,27 +173,11 @@ public class PlayerMovement : MonoBehaviour
             || playerType == PlayerType.Cheese && gameObject.GetComponent<CatapultControl>().cheeseFlying == true)
             //gameObject.GetComponent<PolygonCollider2D>().enabled = false;
         {
-            Debug.Log("Funktionen køres");
             mounted = true;
-            if (mounted == true)
-            {
-                Debug.Log("mount er sandt");
-            }
             mountedTo = closeToActivatable;
-            if (mountedTo == closeToActivatable)
-            {
-                Debug.Log("mountTo virker");
-            }
             GetComponent<Rigidbody2D>().simulated = false;
-            if (GetComponent<Rigidbody2D>().simulated == false)
-            {
-                Debug.Log("simulated-ness virker");
-            }
             body = mountedTo.GetComponent<Rigidbody2D>();
-            if(body == mountedTo.GetComponent<Rigidbody2D>())
-            {
-                Debug.Log("body variabel virker");
-            }
+
             gameObject.GetComponent<CatapultControl>().cheeseFlying = false;
         }
 

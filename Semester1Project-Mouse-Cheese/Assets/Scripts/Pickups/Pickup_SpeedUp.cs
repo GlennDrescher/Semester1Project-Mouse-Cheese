@@ -18,7 +18,7 @@ public class Pickup_SpeedUp : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Mouse" || collision.gameObject.tag == "Cheese")
+        if (collision.gameObject.tag == "Mouse" || collision.gameObject.tag == "Cheese" || collision.gameObject.tag == "Mounts")
         {
             GetComponent<ParticleSystem>().Play();
             GetComponent<SpriteRenderer>().enabled = false;

@@ -17,7 +17,7 @@ public class Pickup_ActivateMinimap : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Cheese" || collision.gameObject.tag == "Mouse")
+        if (collision.gameObject.tag == "Cheese" || collision.gameObject.tag == "Mouse" || collision.gameObject.tag == "Mounts")
         {
             GetComponent<ParticleSystem>().Play();
             GetComponent<SpriteRenderer>().enabled = false;

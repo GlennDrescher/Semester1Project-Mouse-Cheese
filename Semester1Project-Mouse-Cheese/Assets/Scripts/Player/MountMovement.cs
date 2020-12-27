@@ -8,7 +8,7 @@ public class MountMovement : MonoBehaviour
 // -------====== Public Variables ======-------
 
     // Change the speed of the character
-    public float moveSpeed = 15f;
+    public float moveSpeed = 45f;
     public float rotationSpeed = 200f; // Rotation Speed in degrees per second
 
     // is the player mounted to another actor, like the cheese is mounted on the cat?
