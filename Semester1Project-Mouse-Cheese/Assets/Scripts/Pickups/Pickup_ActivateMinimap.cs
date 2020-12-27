@@ -15,6 +15,11 @@ public class Pickup_ActivateMinimap : MonoBehaviour
         
     }
 
+    private void Update()
+    {
+        transform.Rotate(0, 90 * Time.deltaTime, 0);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Cheese" || collision.gameObject.tag == "Mouse" || collision.gameObject.tag == "Mounts")
