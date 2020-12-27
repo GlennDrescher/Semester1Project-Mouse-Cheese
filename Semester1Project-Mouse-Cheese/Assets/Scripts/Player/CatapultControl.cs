@@ -32,12 +32,10 @@ public class CatapultControl : MonoBehaviour
     {
         if (buttonPress == true)
         {
-
             //if the colcheck contains any object
             if (colcheck != null)
             {
                 cheeseFlying = true;
-               
             }
             
         }
@@ -47,11 +45,9 @@ public class CatapultControl : MonoBehaviour
             //mount position is defined
             mountpos = GameObject.FindGameObjectWithTag("Mounts").transform.position;
 
-
             //Physics2D.IgnoreCollision = false;
             //gameObject.GetComponent<Rigidbody2D>().GetComponent<> = false;
             //Physics2D.IgnoreCollision(gameObject.GetComponent<PolygonCollider2D>(), GameObject.FindGameObjectWithTag("Walls").GetComponent<TileMapCollider2D>());
-
 
             //Colliders are set to triggers to avoid collision with walls while flying. One of these probably need to be deleted when we figure out what collider we'll use.
             gameObject.GetComponent<PolygonCollider2D>().isTrigger = true;
@@ -72,71 +68,33 @@ public class CatapultControl : MonoBehaviour
                     
                     //PlayerMounting() funktionen i PlayerMovement scriptet kaldes
                     gameObject.GetComponent<PlayerMovement>().PlayerMounting();
-                    
-                    
-                    Debug.Log("Variables should be disabled.");
-                    
-                    
-
                 }
             }
         }
 
         //Catapult launch trigger on when pressed
-        if (Input.GetAxis("P" + playerNumber + "_Activate") == 1)
+        if (Input.GetAxis("P" + playerNumber + "_Activate") > 0)
         {
-
             buttonPress = true;
-
-
-            
         }
 
         //Catapult launch trigger off when released
-        if(Input.GetKeyUp(KeyCode.Space /*husk playerInteractionKey her*/))
+        if(Input.GetAxis("P" + playerNumber + "_Activate") < 0)
         {
             buttonPress = false;
         }
     }
 
-    //Check for collision with catapult
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
         //Check if collision object has the catapult tag
         if (collision.gameObject.tag.Equals("catapult") == true)
         {
-            
-            
-
-            
-            
             //Check if this gameobject is a cheese
             if (gameObject.tag.Equals("Cheese"))
             {
-
                 colcheck = collision.gameObject;
-
-
-
-
-;
-
             }
-            
         }
-        
-       
     }
-    
-    
-
-    /*IEnumerator charMove()
-    {
-        charCheck = OnCollision2D()
-
-    }*/
-    
-
-
 }
