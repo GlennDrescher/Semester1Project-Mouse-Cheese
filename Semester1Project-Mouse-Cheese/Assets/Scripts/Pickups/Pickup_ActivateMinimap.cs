@@ -17,9 +17,12 @@ public class Pickup_ActivateMinimap : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        GetComponent<ParticleSystem>().Play();
-        GetComponent<SpriteRenderer>().enabled = false;
-        StartCoroutine(ActivateMinimapForXseconds(5f));
+        if (collision.gameObject.tag == "Cheese" || collision.gameObject.tag == "Mouse")
+        {
+            GetComponent<ParticleSystem>().Play();
+            GetComponent<SpriteRenderer>().enabled = false;
+            StartCoroutine(ActivateMinimapForXseconds(5f));
+        }
     }
 
     private IEnumerator ActivateMinimapForXseconds(float x)

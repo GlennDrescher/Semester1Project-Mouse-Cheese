@@ -14,4 +14,6 @@ public class SpawnPickup : MonoBehaviour
         pickups = Resources.LoadAll("Spawnables/Pickups", typeof(GameObject)).Cast<GameObject>().ToArray<GameObject>();
         Instantiate(pickups[Random.Range(0, pickups.Length)], transform.position, transform.rotation);
     }
+
+    
 }
