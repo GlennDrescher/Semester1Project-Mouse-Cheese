@@ -90,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
         if (mounted)
         {
             transform.position = mountedTo.transform.position;
-            transform.rotation = mountedTo.transform.rotation;
+            gameObject.transform.rotation = Quaternion.Slerp(gameObject.transform.rotation, mountedTo.transform.rotation, 0.0f + Time.deltaTime);
         }
 
     }
@@ -116,13 +116,8 @@ public class PlayerMovement : MonoBehaviour
     // Simply gets the input values and updates the variables in realtime depending on the playerNumber
     void UpdateMoveAxis()
     {
-        if (gameObject.GetComponent<CatapultControl>().cheeseFlying == false)
-        {
-            moveHorizontal = Input.GetAxis("P" + playerNumber + "_Horizontal");
-            moveVertical = Input.GetAxis("P" + playerNumber + "_Vertical");
-        }
-
-        
+        moveHorizontal = Input.GetAxis("P" + playerNumber + "_Horizontal");
+        moveVertical = Input.GetAxis("P" + playerNumber + "_Vertical");
     }
 
 
@@ -166,19 +161,14 @@ public class PlayerMovement : MonoBehaviour
 
     public void PlayerMounting()
     {
+        mounted = true;
+        mountedTo = GameObject.FindGameObjectWithTag("Mounts");
+        GetComponent<Rigidbody2D>().simulated = false;
+        body = mountedTo.GetComponent<Rigidbody2D>();
 
-        // If Cheese is close to cat or if the cheese is flying
-        if (Input.GetAxis("P" + playerNumber + "_Activate") == 1
-            && playerType == PlayerType.Cheese
-            || playerType == PlayerType.Cheese && gameObject.GetComponent<CatapultControl>().cheeseFlying == true)
-            //gameObject.GetComponent<PolygonCollider2D>().enabled = false;
-        {
-            mounted = true;
-            mountedTo = closeToActivatable;
-            GetComponent<Rigidbody2D>().simulated = false;
-            body = mountedTo.GetComponent<Rigidbody2D>();
-            gameObject.GetComponent<CatapultControl>().cheeseFlying = false;
-        }
+        
+
+        //gameObject.GetComponent<CatapultControl>().cheeseFlying = false;
 
     }
 

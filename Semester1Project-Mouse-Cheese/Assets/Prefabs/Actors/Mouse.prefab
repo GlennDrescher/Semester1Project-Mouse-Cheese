@@ -91,12 +91,11 @@ GameObject:
   m_Component:
   - component: {fileID: 6281018737848290127}
   - component: {fileID: 2210471505355847230}
+  - component: {fileID: 3795535745213094411}
+  - component: {fileID: 1090130900145191933}
   - component: {fileID: 216694744138504789}
   - component: {fileID: 2877314422082997222}
   - component: {fileID: 366793911283305541}
-  - component: {fileID: 4257942224333744460}
-  - component: {fileID: 3795535745213094411}
-  - component: {fileID: 1090130900145191933}
   m_Layer: 0
   m_Name: Mouse
   m_TagString: Cheese
@@ -139,6 +138,34 @@ MonoBehaviour:
   mountedMoveSpeed: 0
   mountedRotationSpeed: 0
   body: {fileID: 0}
+--- !u!114 &3795535745213094411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3737013795760461387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ddc843e1474491409b91b2fdb3b53f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth: 3
+  CurrentHealth: 0
+--- !u!114 &1090130900145191933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3737013795760461387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de4dd31ab0f120e49b9b56540ae6353b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  coolDownTime: 5
 --- !u!212 &216694744138504789
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -220,52 +247,9 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.112118706, y: -0.07325482}
   m_Size: {x: 8.859504, y: 3.7592797}
   m_Direction: 1
---- !u!114 &4257942224333744460
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3737013795760461387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ab779da980c82f4d9710abc40ec5f41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  catapultedSpeed: 50
-  playerInteractionKey: 
-  cheeseFlying: 0
---- !u!114 &3795535745213094411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3737013795760461387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ddc843e1474491409b91b2fdb3b53f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxHealth: 3
-  CurrentHealth: 0
---- !u!114 &1090130900145191933
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3737013795760461387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de4dd31ab0f120e49b9b56540ae6353b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 1
-  coolDownTime: 5

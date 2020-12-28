@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 567648395}
   - component: {fileID: 567648396}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Minimap Dot (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,10 +90,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 184948936648485347}
+  - component: {fileID: 8104767464933556000}
   - component: {fileID: 184948936648485346}
   - component: {fileID: 4305325766985602684}
   - component: {fileID: 8102803180487881033}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Catapult
   m_TagString: catapult
   m_Icon: {fileID: 0}
@@ -115,6 +116,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8104767464933556000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184948936648485345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ab779da980c82f4d9710abc40ec5f41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &184948936648485346
 SpriteRenderer:
   m_ObjectHideFlags: 0

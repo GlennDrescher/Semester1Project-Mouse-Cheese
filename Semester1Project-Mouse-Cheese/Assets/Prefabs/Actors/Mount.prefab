@@ -91,10 +91,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2347771628920435745}
   - component: {fileID: 8427601776874371497}
+  - component: {fileID: 6370931297620261634}
   - component: {fileID: 3184373960989931877}
   - component: {fileID: 3076311342164665683}
   - component: {fileID: 5564900995263435277}
-  - component: {fileID: 6370931297620261634}
   - component: {fileID: 6662217602477525285}
   m_Layer: 0
   m_Name: Mount
@@ -134,6 +134,20 @@ MonoBehaviour:
   rotationSpeed: 200
   mounted: 0
   body: {fileID: 0}
+--- !u!114 &6370931297620261634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3295322437045578694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8784e933a3deb2444aaa7e6b4bc37fc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  coolDownTime: 5
 --- !u!212 &3184373960989931877
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -221,20 +235,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 2.8759582
---- !u!114 &6370931297620261634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3295322437045578694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8784e933a3deb2444aaa7e6b4bc37fc7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 1
-  coolDownTime: 5
 --- !u!70 &6662217602477525285
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -248,6 +248,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 4.64, y: 3.54}
+  m_Offset: {x: 0.3, y: 0}
+  m_Size: {x: 3.5, y: 2.5}
   m_Direction: 1

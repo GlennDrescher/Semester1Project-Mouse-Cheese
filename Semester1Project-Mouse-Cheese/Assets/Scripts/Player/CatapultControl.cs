@@ -5,6 +5,66 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 public class CatapultControl : MonoBehaviour
+{
+
+    private GameObject player = null;
+    private int playerNumber;
+
+    private Vector3 mountpos;
+    private Vector3 startpos;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+        if (player != null)
+        {
+            
+            playerNumber = player.GetComponent<PlayerMovement>().playerNumber;
+            if (Input.GetAxisRaw("P" + playerNumber + "_Activate") == 1)
+            {
+                ActivateCatapult();
+            }
+        }
+        
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //Check if this gameobject is a cheese
+        if (collision.gameObject.tag.Equals("Cheese"))
+        {
+            player = collision.gameObject;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        player = null;
+    }
+
+    private void ActivateCatapult()
+    {
+        // Ignore all Collisions
+        Physics2D.IgnoreLayerCollision(0, 11, true);
+
+
+        mountpos = GameObject.FindGameObjectWithTag("Mounts").transform.position;
+        startpos = player.transform.position;
+        var velocity = Vector3.zero;
+        player.transform.position = Vector3.SmoothDamp(startpos, mountpos, ref velocity, 0.2f);
+    }
+}
+
+
+/*
+ * 
+public class CatapultControl : MonoBehaviour
 
 {
     private GameObject colcheck = null; //colliion check switch between player and catapult. Contains the catapult.
@@ -98,3 +158,4 @@ public class CatapultControl : MonoBehaviour
         }
     }
 }
+*/
