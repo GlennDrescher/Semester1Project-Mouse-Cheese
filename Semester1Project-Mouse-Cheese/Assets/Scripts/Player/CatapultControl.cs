@@ -10,9 +10,6 @@ public class CatapultControl : MonoBehaviour
     private GameObject player = null;
     private int playerNumber;
 
-    private Vector3 mountpos;
-    private Vector3 startpos;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +25,7 @@ public class CatapultControl : MonoBehaviour
             playerNumber = player.GetComponent<PlayerMovement>().playerNumber;
             if (Input.GetAxisRaw("P" + playerNumber + "_Activate") == 1)
             {
-                ActivateCatapult();
+                StartCoroutine(ActivateCatapult());
             }
         }
         
@@ -48,17 +45,27 @@ public class CatapultControl : MonoBehaviour
         player = null;
     }
 
-    private void ActivateCatapult()
+    private IEnumerator ActivateCatapult()
     {
-        // Ignore all Collisions
-        Physics2D.IgnoreLayerCollision(0, 11, true);
+        //Physics2D.IgnoreLayerCollision(0, 11, true);
 
+        float time = 0f;
+        float duration = 5f;
+        Vector2 startPos = player.transform.position;
+        Vector2 targetPos = GameObject.FindGameObjectWithTag("Mounts").transform.position;
+        var velocity = Vector2.zero;
 
-        mountpos = GameObject.FindGameObjectWithTag("Mounts").transform.position;
-        startpos = player.transform.position;
-        var velocity = Vector3.zero;
-        player.transform.position = Vector3.SmoothDamp(startpos, mountpos, ref velocity, 0.2f);
+        while (time < duration)
+        {
+            player.transform.position = targetPos;
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        player.transform.position = targetPos;
+        Physics2D.IgnoreLayerCollision(0, 11, false);
     }
+
 }
 
 
