@@ -18,14 +18,20 @@ public class CatapultControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+       
+
         if (player != null)
         {
             
             playerNumber = player.GetComponent<PlayerMovement>().playerNumber;
             if (Input.GetAxisRaw("P" + playerNumber + "_Activate") == 1)
             {
-                StartCoroutine(ActivateCatapult());
+                Physics2D.IgnoreLayerCollision(0, 11, true);
+
+                Vector3 startPos = player.transform.position;
+                Vector3 targetPos = GameObject.FindGameObjectWithTag("Mounts").transform.position;
+                var velocity = Vector3.zero;
+                player.transform.position = Vector3.SmoothDamp(player.transform.position, targetPos, ref velocity, 2f);
             }
         }
         
@@ -55,12 +61,8 @@ public class CatapultControl : MonoBehaviour
         Vector2 targetPos = GameObject.FindGameObjectWithTag("Mounts").transform.position;
         var velocity = Vector2.zero;
 
-        while (time < duration)
-        {
-            player.transform.position = targetPos;
-            time += Time.deltaTime;
-            yield return null;
-        }
+        player.transform.position = Vector2.SmoothDamp(startPos, targetPos, ref velocity, 2f);
+        yield return null;
 
         player.transform.position = targetPos;
         Physics2D.IgnoreLayerCollision(0, 11, false);
